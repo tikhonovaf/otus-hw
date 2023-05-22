@@ -5,7 +5,7 @@ import com.google.common.collect.Lists;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Main {
+public class HelloOtus {
 
     public static void main(String[] args) {
 

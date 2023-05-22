@@ -1,6 +1,10 @@
 plugins {
     id 'java'
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
 }
+
+apply plugin: "java"
+apply plugin: "com.github.johnrengelman.shadow"
 
 group 'ru.otus.task'
 version '0.0.1'
@@ -11,9 +15,20 @@ repositories {
 
 dependencies {
     implementation 'com.google.guava:guava:31.1-jre'
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+//    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+//    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 }
+
+shadowJar {
+    archiveBaseName.set('fat-jar-file')
+    archiveVersion.set('0.0.2')
+    archiveClassifier.set('')
+    manifest {
+        attributes 'Main-Class': 'ru.otus.task.HelloOtus'
+    }
+}
+
+tasks.build.dependsOn  tasks.shadowJar
 
 test {
     useJUnitPlatform()
