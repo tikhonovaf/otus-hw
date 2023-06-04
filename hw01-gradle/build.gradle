@@ -1,0 +1,37 @@
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
+}
+
+apply plugin: "java"
+apply plugin: "com.github.johnrengelman.shadow"
+
+group 'ru.otus.task'
+version '0.0.1'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'com.google.guava:guava:31.1-jre'
+//    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+//    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+shadowJar {
+    archiveBaseName.set('fat-jar-file')
+    archiveVersion.set('0.0.2')
+    archiveClassifier.set('')
+    manifest {
+        attributes 'Main-Class': 'ru.otus.task.HelloOtus'
+    }
+}
+
+tasks.build.dependsOn  tasks.shadowJar
+
+test {
+    useJUnitPlatform()
+}
+
+//  Запуск java -jar fat-jar-file-0.0.2.jar  из папки с fat-jar
