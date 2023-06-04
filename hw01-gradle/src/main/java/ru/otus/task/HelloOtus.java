@@ -18,7 +18,7 @@ public class HelloOtus {
         }
         System.out.println(Lists.reverse(example));
 
-//      Пример 1 - partition
+//      Пример 2 - partition
         List<String> names = Lists.newArrayList("John","Jane","Adam","Tom","Viki","Tyler");
 
         List<List<String>> result = Lists.partition(names, 2);
